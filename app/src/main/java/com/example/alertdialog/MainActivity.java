@@ -31,25 +31,32 @@ public class MainActivity extends AppCompatActivity {
         mBtnShowDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String[] arrMonHocs =  {"PHP" , "JAVASCRIPT" , "ANDROID" , "IOS" , "MEAN"};
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this)
-                                                        .setTitle("Thông báo").setMessage("Phiên bản mới cần được cập nhật !!!").setIcon(R.mipmap.ic_launcher).setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                        .setTitle("Lựa chọn môn học")
+                        .setIcon(R.mipmap.ic_launcher)
+                        .setCancelable(false)
+                        .setSingleChoiceItems(arrMonHocs, -1, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(MainActivity.this, "có", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, arrMonHocs[which], Toast.LENGTH_SHORT).show();
                             }
-                        }).setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                        })
+                        .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(MainActivity.this, "Có", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Không", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                             }
-                        }).setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        }).setCancelable(false);
-                        alertDialog.show();
+                        });
+                alertDialog.show();
             }
         });
+
     }
 }
