@@ -32,16 +32,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String[] arrMonHocs =  {"PHP" , "JAVASCRIPT" , "ANDROID" , "IOS" , "MEAN"};
+                boolean[] arrChecked = {false,false,false,false,false };
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Lựa chọn môn học")
                         .setIcon(R.mipmap.ic_launcher)
                         .setCancelable(false)
-                        .setSingleChoiceItems(arrMonHocs, -1, new DialogInterface.OnClickListener() {
+                        .setMultiChoiceItems(arrMonHocs, arrChecked, new DialogInterface.OnMultiChoiceClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(MainActivity.this, arrMonHocs[which], Toast.LENGTH_SHORT).show();
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                if (isChecked){
+                                    Toast.makeText(MainActivity.this, "Đã chọn " + arrMonHocs[which], Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(MainActivity.this, "Bỏ chọn " + arrMonHocs[which], Toast.LENGTH_SHORT).show();
+                                }
                             }
                         })
+
                         .setPositiveButton("Có", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
